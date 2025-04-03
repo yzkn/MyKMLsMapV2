@@ -393,8 +393,23 @@ var baseMaps = {
         }),
 };
 
+const vectorTileStyling = {
+    All: {
+        radius: 0,
+        weight: 1,
+        fillColor: '#ff0000',
+        color: '#ff0000',
+        fillOpacity: 1,
+        opacity: 1
+    }
+};
+
+const vectorTileOptions = {
+    vectorTileLayerStyles: vectorTileStyling,
+};
+
 var overlayMaps = {
-    'MyKMLsMap': L.vectorGrid.protobuf('https://yzkn.github.io/MyKMLsMap/tiles/{z}/{x}/{y}.pbf'),
+    'MyKMLsMap': L.vectorGrid.protobuf('https://yzkn.github.io/MyKMLsMap/tiles/{z}/{x}/{y}.pbf', vectorTileOptions),
     'Esri(航空写真) 20%': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         {
             opacity: 0.2
