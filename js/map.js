@@ -576,6 +576,10 @@ function initMap2() {
         shareImage();
     }).addTo(map);
 
+    L.easyButton('<img class="icon" src="img/x.svg" title="Share your current location"/>', async function (btn, map) {
+        shareX(await reverseGeocoding(map.getCenter().lat, map.getCenter().lng), map.getCenter().lat, map.getCenter().lng);
+    }).addTo(map);
+
     map.on('moveend', async function (e) {
         document.title = 'mytrack (' + await reverseGeocoding(map.getCenter().lat, map.getCenter().lng) + '付近)';
     });
@@ -623,4 +627,10 @@ function shareImage() {
         .catch(function (error) {
             console.error('oops, something went wrong!', error);
         });
+}
+
+function shareX(locationName, latitude, longitude) {
+    const gMapURL = encodeURI(`https://www.google.com/maps/search/?query=${latitude},${longitude}`);
+    const webIntentURL = `https://twitter.com/intent/tweet?url=${gMapURL}&text=${locationName}`;
+    window.open(webIntentURL, 'x');
 }
