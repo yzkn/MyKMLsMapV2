@@ -38,3 +38,7 @@ body,
   height: 30px !important;
   width: 30px !important;
 }
+
+.leaflet-marker-icon {
+  filter: hue-rotate(150deg);
+}

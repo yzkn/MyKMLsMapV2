@@ -393,19 +393,28 @@ var baseMaps = {
         }),
 };
 
+const vectorTileLayerStyling = {
+    color: '#ff0000',
+    fill: false,
+    fillColor: '#ff0000',
+    fillOpacity: 1,
+    opacity: 1,
+    radius: 0,
+    stroke: true,
+    weight: 1,
+    icon: L.divIcon({
+        className: 'leaflet-mouse-marker',
+        iconAnchor: [0, 0],
+        iconSize: [0, 0]
+    })
+};
+
 const vectorTileStyling = {
-    All: {
-        radius: 0,
-        weight: 1,
-        fillColor: '#ff0000',
-        color: '#ff0000',
-        fillOpacity: 1,
-        opacity: 1
-    }
+    All: vectorTileLayerStyling
 };
 
 const vectorTileOptions = {
-    vectorTileLayerStyles: vectorTileStyling,
+    vectorTileLayerStyles: vectorTileStyling
 };
 
 var overlayMaps = {
@@ -502,7 +511,7 @@ function initMap2() {
     L.Control.betterFileLayer({
         position: 'topleft', // Leaflet control position
         fileSizeLimit: 1024000, // File size limit in kb (default: 1024 kb)
-        style: {}, // Overwrite the default BFL GeoJSON style function
+        style: vectorTileLayerStyling, // Overwrite the default BFL GeoJSON style function
         // onEachFeature: () => { }, // Overwrite the default BFL GeoJSON onEachFeature function
         onEachFeature: (feature, layer) => {
             const coordinates = feature.geometry.coordinates;
@@ -510,7 +519,7 @@ function initMap2() {
 
             layer.bindPopup(properties.name + ' ' + coordinates[1] + ',' + coordinates[0]);
         },
-        layer: L.customLayer, // If you want a custom layer to be used (must be a GeoJSON class inheritance)
+        // layer: L.customLayer, // If you want a custom layer to be used (must be a GeoJSON class inheritance)
         // // Restrict accepted file formats (default: .gpx, .kml, .kmz, .geojson, .json, .csv, .topojson, .wkt, .shp, .shx, .prj, .dbf, .zip)
         // formats: ['.geojson', '.kml', '.gpx'],
         importOptions: { // Some file types may have import options, for now, just csv is documented
