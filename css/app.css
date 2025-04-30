@@ -42,3 +42,7 @@ body,
 .leaflet-marker-icon {
   filter: hue-rotate(150deg);
 }
+
+.leaflet-control-attribution {
+  font-size: 0.2em;
+}
