@@ -509,7 +509,12 @@ function initMap2() {
     map.addControl(new L.Control.Gps({
         autoCenter: true,
         maxZoom: 14,
-        setView: true
+        setView: true,
+        style: {
+            radius: 1,
+            color: '#0068B7',
+            fillColor: '#00A0E9'
+        }
     }));
 
     L.Control.betterFileLayer({
