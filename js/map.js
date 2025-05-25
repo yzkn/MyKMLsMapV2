@@ -506,7 +506,11 @@ function initMap2() {
     L.Permalink.setup(map);
     L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-    L.geolet({ position: 'topleft' }).addTo(map);
+    map.addControl(new L.Control.Gps({
+        autoCenter: true,
+        maxZoom: 14,
+        setView: true
+    }));
 
     L.Control.betterFileLayer({
         position: 'topleft', // Leaflet control position
