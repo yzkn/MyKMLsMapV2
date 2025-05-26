@@ -508,8 +508,8 @@ function initMap2() {
 
     map.addControl(new L.Control.Gps({
         autoCenter: true,
+        autoFollow: true,
         maxZoom: 14,
-        setView: true,
         style: {
             radius: 1,
             color: '#0068B7',
