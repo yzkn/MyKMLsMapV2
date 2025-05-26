@@ -511,9 +511,9 @@ function initMap2() {
         autoFollow: true,
         maxZoom: 14,
         style: {
-            radius: 1,
+            radius: 3,
             color: '#0068B7',
-            fillColor: '#00A0E9'
+            fillColor: 'transparent'
         }
     }));
 
