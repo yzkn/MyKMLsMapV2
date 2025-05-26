@@ -506,16 +506,34 @@ function initMap2() {
     L.Permalink.setup(map);
     L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-    map.addControl(new L.Control.Gps({
-        autoCenter: true,
-        autoFollow: true,
-        maxZoom: 14,
-        style: {
-            radius: 3,
-            color: '#0068B7',
-            fillColor: 'transparent'
-        }
-    }));
+    L.control.locate({
+        locateOptions: {
+            watch: true,
+            timeout: Infinity,
+            enableHighAccuracy: true
+        },
+
+        position: "topleft",
+
+        /**
+         * Automatically sets the map view (zoom and pan) to the user's location as it updates.
+         * While the map is following the user's location, the control is in the `following` state,
+         * which changes the style of the control and the circle marker.
+         *
+         * Possible values:
+         *  - false: never updates the map view when location changes.
+         *  - 'once': set the view when the location is first determined
+         *  - 'always': always updates the map view when location changes.
+         *              The map view follows the user's location.
+         *  - 'untilPan': like 'always', except stops updating the
+         *                view if the user has manually panned the map.
+         *                The map view follows the user's location until she pans.
+         *  - 'untilPanOrZoom': (default) like 'always', except stops updating the
+         *                view if the user has manually panned the map.
+         *                The map view follows the user's location until she pans.
+         */
+        setView: "always"
+    }).addTo(map);
 
     L.Control.betterFileLayer({
         position: 'topleft', // Leaflet control position
