@@ -508,6 +508,7 @@ function initMap2() {
 
     L.control.locate({
         locateOptions: {
+            maxZoom: 14,
             watch: true,
             timeout: Infinity,
             enableHighAccuracy: true
